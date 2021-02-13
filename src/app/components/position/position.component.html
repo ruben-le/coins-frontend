@@ -1,0 +1,9 @@
+<div [ngClass]="setClasses()" >
+  <p>
+    <input type="checkbox" disabled="disabled" [checked]="setClasses().tradingDisabled"/>
+    {{ position.currency }}
+    {{ position.balance }}
+    <button class="show-details">Show Details</button>
+  </p>
+</div>
+
