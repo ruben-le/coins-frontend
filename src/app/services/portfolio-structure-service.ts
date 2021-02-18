@@ -5,8 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Position } from "../models/position";
 import { Observable } from "rxjs";
 import {
-  COINBASE_PRO_API_URL,
-  getAuth,
+  ConfigService,
 } from "./config-service";
 
 declare const Buffer;
@@ -18,9 +17,14 @@ export class PortfolioStructureService {
   private readonly auth;
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly configService: ConfigService
   ) {
-    this.auth = getAuth();
+    this.auth = configService.getAuth();
+
+    if (!this.auth.COINBASE_PRO_API_KEY) throw 'API-Key not defined!';
+    if (!this.auth.COINBASE_PRO_API_PASSPHRASE) throw 'API-Passphrase not defined!';
+    if (!this.auth.COINBASE_PRO_API_SECRET) throw 'API-Secret not defined!';
   }
 
   /*
@@ -36,7 +40,7 @@ export class PortfolioStructureService {
 
   getCBProAccounts(): Observable<Position[]> {
     return this.http.get<Position[]>(
-      COINBASE_PRO_API_URL + 'accounts',
+      this.configService.getCBProUrl() + 'accounts',
       {
         headers:
           this.getRequestHeaders(
@@ -50,6 +54,7 @@ export class PortfolioStructureService {
 
   getRequestHeaders(method, requestPath, body) {
     let timestamp = String(Date.now() / 1000);
+
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'CB-ACCESS-KEY': this.auth.COINBASE_PRO_API_KEY,

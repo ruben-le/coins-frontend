@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { PositionComponent } from './components/position/position.component';
 import { PortfolioStructureService } from "./services/portfolio-structure-service";
+import {ConfigService} from "./services/config-service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PortfolioStructureService } from "./services/portfolio-structure-servic
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PortfolioStructureService
+    PortfolioStructureService,
+    ConfigService
   ],
   providers: [],
   bootstrap: [AppComponent]
