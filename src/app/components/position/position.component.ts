@@ -18,7 +18,7 @@ export class PositionComponent implements OnInit {
   setClasses() {
     return {
       position: true,
-      tradingDisabled: !this.position.trading_enabled
+      tradingEnabled: this.position.trading_enabled
     }
   }
 }

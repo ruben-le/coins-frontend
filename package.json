@@ -23,6 +23,8 @@
     "coinbase": "^2.0.8",
     "crypto": "^1.0.1",
     "crypto-js": "^4.0.0",
+    "igniteui-angular-charts": "^11.1.0",
+    "igniteui-angular-core": "^11.1.0",
     "node-fetch": "^2.6.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
